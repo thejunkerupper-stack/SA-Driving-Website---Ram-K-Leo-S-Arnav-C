@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ContractLink } from "@/components/ui/contract-link";
 import { Link } from "react-router-dom";
 import { Laptop, Clock, Award, CheckCircle, DollarSign, BookOpen } from "lucide-react";
 
@@ -128,9 +127,6 @@ const DriverImprovement = () => {
                 </Link>
               </div>
             </div>
-            
-            {/* Contract Link */}
-            <ContractLink />
           </div>
         </div>
       </section>

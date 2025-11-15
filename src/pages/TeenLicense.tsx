@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ContractLink } from "@/components/ui/contract-link";
 import { Link } from "react-router-dom";
-import { Clock, DollarSign, Car, CheckCircle, Users, Award } from "lucide-react";
+import { Clock, DollarSign, Car, CheckCircle, Users, Award, MapPin, Calendar, AlertTriangle, FileText } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const TeenLicense = () => {
@@ -18,17 +18,34 @@ const TeenLicense = () => {
   }, []);
 
   const requirements = [
-    "15.5+ years old",
-    "Learner's permit",
-    "Parent consent",
-    "Classroom course",
+    "High School DEC Pink Slip / VADETS DEC Card / Online/In-Person Drivers Ed Certificate",
+    "45hrs Training Hours Completed (30h Day & 15h Night)",
+    "Learner's Permit close to 9 months from issue date",
+    "Parent Contract signed",
   ];
 
   const features = [
-    { icon: Clock, title: "7-Day Course", description: "Complete training with road test prep" },
-    { icon: Users, title: "50 Min Drive", description: "Behind-the-wheel instruction" },
-    { icon: Car, title: "50 Min Watch", description: "Learn from peer observation" },
-    { icon: Award, title: "Test Ready", description: "DMV road test preparation" },
+    { icon: Clock, title: "7-Day Course", description: "Two 50min sessions each day + Road Test" },
+    { icon: Users, title: "Driving & Observation", description: "Behind-the-wheel instruction and peer learning" },
+    { icon: Award, title: "Road Test Included", description: "Complete assessment of driving skills" },
+    { icon: MapPin, title: "Pick-up Service", description: "Free pickup and drop-off within range" },
+  ];
+
+  const scheduleInfo = [
+    "Flexible on weekdays & holidays",
+    "Preferred start day: Monday",
+    "Before/after school availability",
+    "Sessions can be made up",
+    "Time of Operation: 7am-7pm",
+    "Students paired with others",
+  ];
+
+  const importantNotes = [
+    "No sandals/slippers/slides while driving",
+    "Sessions may cancel due to inclement weather",
+    "$50 cancellation fee if not ready after 1st session",
+    "Course cancelled if no response for 30+ days (no refunds)",
+    "45hrs minimum training required",
   ];
 
   return (
@@ -74,21 +91,20 @@ const TeenLicense = () => {
                 <CardHeader>
                   <CardTitle className="text-xl mb-4">What's Included</CardTitle>
                   <div className="space-y-2">
-                    <div className="flex items-center space-x-2">
-                      <CheckCircle className="w-5 h-5 text-accent" />
-                      <span className="text-sm">7 training sessions</span>
+                    <div>
+                      <span className="text-sm">• 7-day complete course</span>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <CheckCircle className="w-5 h-5 text-accent" />
-                      <span className="text-sm">DMV certified instructors</span>
+                    <div>
+                      <span className="text-sm">• Driving & Observation sessions</span>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <CheckCircle className="w-5 h-5 text-accent" />
-                      <span className="text-sm">Road test prep & scheduling</span>
+                    <div>
+                      <span className="text-sm">• Road Test included</span>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <CheckCircle className="w-5 h-5 text-accent" />
-                      <span className="text-sm">Pick-up/drop-off service</span>
+                    <div>
+                      <span className="text-sm">• Free pick-up/drop-off service</span>
+                    </div>
+                    <div>
+                      <span className="text-sm">• 180-day temporary license</span>
                     </div>
                   </div>
                 </CardHeader>
@@ -98,10 +114,10 @@ const TeenLicense = () => {
               <Card className="shadow-elevation">
                 <CardHeader>
                   <CardTitle className="text-xl mb-4">Requirements</CardTitle>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-3">
                     {requirements.map((req, index) => (
-                      <div key={index} className="flex items-center space-x-2">
-                        <div className="w-5 h-5 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-xs font-bold">
+                      <div key={index} className="flex items-start space-x-2">
+                        <div className="w-5 h-5 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-xs font-bold mt-0.5">
                           {index + 1}
                         </div>
                         <span className="text-sm">{req}</span>
@@ -111,6 +127,62 @@ const TeenLicense = () => {
                 </CardHeader>
               </Card>
             </div>
+
+            {/* Schedule Information */}
+            <div className="grid md:grid-cols-2 gap-6 mb-12">
+              <Card className="shadow-elevation">
+                <CardHeader>
+                  <CardTitle className="text-xl mb-4">Schedule & Information</CardTitle>
+                  <div className="space-y-2">
+                    {scheduleInfo.map((info, index) => (
+                      <div key={index}>
+                        <span className="text-sm">• {info}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardHeader>
+              </Card>
+
+              <Card className="shadow-elevation">
+                <CardHeader>
+                  <CardTitle className="text-xl mb-4">Important Notes</CardTitle>
+                  <div className="space-y-2">
+                    {importantNotes.map((note, index) => (
+                      <div key={index}>
+                        <span className="text-sm">• {note}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardHeader>
+              </Card>
+            </div>
+
+            {/* Upon Completion */}
+            <Card className="shadow-elevation mb-12">
+              <CardHeader>
+                <CardTitle className="text-xl mb-4">Upon Completion</CardTitle>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="font-semibold mb-2">Temporary License</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Teen receives a 180-day (6 months) temporary Virginia drivers license through SA Driving School Inc.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-2">Physical License</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Within 60-90 days of completion, you will automatically receive your drivers license from DMV (Richmond) in the mail.
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-4 p-3 bg-muted rounded-lg">
+                  <p className="text-xs text-muted-foreground">
+                    <strong>Note:</strong> SA Driving School Inc submits all Teen License paperwork at the end of each month to the DMV. 
+                    As of 7/15/2024, DMV will NOT process any license documents at customer service centers - you will receive it by mail.
+                  </p>
+                </div>
+              </CardHeader>
+            </Card>
 
             {/* CTA */}
             <div className="text-center">
