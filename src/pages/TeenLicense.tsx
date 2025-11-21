@@ -88,7 +88,7 @@ const TeenLicense = () => {
             {/* Left/main column (spans 2 cols on md+) - centered content */}
             <div className="md:col-span-2 flex flex-col items-center text-center">
             {/* Features Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
               {features.map((feature, index) => (
                 <Card key={index} className="shadow-sm">
                   <CardHeader className="space-y-2">
@@ -100,6 +100,26 @@ const TeenLicense = () => {
                   </CardHeader>
                 </Card>
               ))}
+            </div>
+
+            {/* Centered carousel beneath the features row */}
+            <div className="flex justify-center mb-12">
+              <div className="w-full max-w-3xl">
+                <Card className="shadow-elevation">
+                  <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden">
+                    {carouselImages.map((src, i) => (
+                      <img
+                        key={i}
+                        src={src}
+                        alt={`carousel-${i}`}
+                        loading="lazy"
+                        style={{ transitionDuration: '1500ms' }}
+                        className={`absolute inset-0 w-full h-full object-cover ${carouselIndex === i ? 'opacity-100' : 'opacity-0'}`}
+                      />
+                    ))}
+                  </div>
+                </Card>
+              </div>
             </div>
 
             {/* Program Details */}
