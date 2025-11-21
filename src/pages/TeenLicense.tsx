@@ -8,6 +8,21 @@ import { useEffect, useState } from "react";
 const TeenLicense = () => {
   const [isAnimated, setIsAnimated] = useState(false);
 
+  // Carousel state for side images
+  const carouselImages = [
+    `${import.meta.env.BASE_URL}teendriverssadriving.jpg`,
+    `${import.meta.env.BASE_URL}sadrivingimage2.jpg`,
+    `${import.meta.env.BASE_URL}sadrivingimage3.jpg`,
+  ];
+  const [carouselIndex, setCarouselIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setCarouselIndex((i) => (i + 1) % carouselImages.length);
+    }, 5000);
+    return () => clearInterval(id);
+  }, []);
+
   useEffect(() => {
     // Start animations immediately when component mounts
     const timer = setTimeout(() => {
@@ -58,14 +73,7 @@ const TeenLicense = () => {
             <p className="text-lg opacity-90 mb-4">
               Professional driving instruction to help teens become safe, confident drivers
             </p>
-            {/* Hero image - placed in `public/` so Vite serves it correctly in dev and production */}
-            <div className="mt-6">
-              <img
-                src={`${import.meta.env.BASE_URL}teendriverssadriving.jpg`}
-                alt="Teen drivers training"
-                className="mx-auto rounded-lg shadow-md w-full max-w-2xl object-cover"
-              />
-            </div>
+            <div className="mt-6" />
             <div className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-4 py-2 rounded-lg font-bold">
               <span>$400</span>
             </div>
@@ -76,7 +84,9 @@ const TeenLicense = () => {
       {/* Main Content */}
       <section id="main-content" className="py-12 scroll-mt-8">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 items-start">
+            {/* Left/main column (spans 2 cols on md+) */}
+            <div className="md:col-span-2">
             {/* Features Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
               {features.map((feature, index) => (
@@ -211,6 +221,21 @@ const TeenLicense = () => {
             
             {/* Contract Link */}
             <ContractLink />
+            </div>
+
+            {/* Right/side column: image carousel */}
+            <aside className="md:col-span-1">
+              <div className="relative w-full h-64 md:h-full rounded-lg overflow-hidden shadow-lg">
+                {carouselImages.map((src, i) => (
+                  <img
+                    key={i}
+                    src={src}
+                    alt={`carousel-${i}`}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${carouselIndex === i ? 'opacity-100' : 'opacity-0'}`}
+                  />
+                ))}
+              </div>
+            </aside>
           </div>
         </div>
       </section>
