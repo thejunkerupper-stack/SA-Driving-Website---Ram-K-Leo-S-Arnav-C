@@ -58,6 +58,14 @@ const TeenLicense = () => {
             <p className="text-lg opacity-90 mb-4">
               Professional driving instruction to help teens become safe, confident drivers
             </p>
+            {/* Hero image - placed in `public/` so Vite serves it correctly in dev and production */}
+            <div className="mt-6">
+              <img
+                src={`${import.meta.env.BASE_URL}teendriverssadriving.jpg`}
+                alt="Teen drivers training"
+                className="mx-auto rounded-lg shadow-md w-full max-w-2xl object-cover"
+              />
+            </div>
             <div className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-4 py-2 rounded-lg font-bold">
               <span>$400</span>
             </div>
