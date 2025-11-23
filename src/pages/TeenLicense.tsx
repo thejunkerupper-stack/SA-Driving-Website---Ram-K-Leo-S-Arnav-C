@@ -68,11 +68,11 @@ const TeenLicense = () => {
       {/* Hero Section */}
       <section className="relative text-primary-foreground py-24 md:py-32 overflow-hidden">
         {/* Background carousel images */}
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 hero-fade">
           {carouselImages.map((src, i) => (
             <div
               key={i}
-              className={`absolute inset-0 transition-opacity duration-1500 ${carouselIndex === i ? 'opacity-100' : 'opacity-0'}`}
+              className={`absolute inset-0 transition-opacity duration-1500 ${carouselIndex === i ? 'opacity-95' : 'opacity-0'}`}
             >
               <img
                 src={src}
