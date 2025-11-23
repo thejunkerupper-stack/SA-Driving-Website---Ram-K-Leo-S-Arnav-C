@@ -164,7 +164,7 @@ const Register = () => {
           successMessage = `Registration successful! Please send $${total} via Zelle to info@sadriving.com`;
           break;
         case "credit-card":
-          successMessage = `Registration and payment successful! A receipt has been sent to ${formData.email}`;
+          successMessage = `Payment Successful! Thank you for choosing SA Driving School.`;
           break;
       }
       
@@ -199,6 +199,20 @@ const Register = () => {
 
   const handleChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  // Expiry input helper: sanitize on input and format to MM/YY on blur
+  const onExpiryInputChange = (value: string) => {
+    // allow digits and slash while typing, cap length to 5
+    let v = value.replace(/[^0-9/]/g, '');
+    if (v.length > 5) v = v.slice(0, 5);
+    handleChange('expiry', v);
+  };
+
+  const formatExpiry = (value: string) => {
+    const digits = (value || '').replace(/\D/g, '').slice(0, 4);
+    if (digits.length <= 2) return digits;
+    return digits.slice(0, 2) + '/' + digits.slice(2);
   };
 
   return (
@@ -377,7 +391,8 @@ const Register = () => {
                                 id="expiry"
                                 required
                                 value={formData.expiry}
-                                onChange={(e) => handleChange("expiry", e.target.value)}
+                                onChange={(e) => onExpiryInputChange(e.target.value)}
+                                onBlur={(e) => handleChange('expiry', formatExpiry(e.target.value))}
                                 placeholder="MM/YY"
                                 maxLength={5}
                               />

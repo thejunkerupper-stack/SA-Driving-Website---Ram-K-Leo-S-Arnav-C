@@ -19,7 +19,7 @@ const TeenLicense = () => {
   useEffect(() => {
     const id = setInterval(() => {
       setCarouselIndex((i) => (i + 1) % carouselImages.length);
-    }, 5000);
+    }, 4000);
     return () => clearInterval(id);
   }, []);
 
@@ -66,29 +66,62 @@ const TeenLicense = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-primary text-primary-foreground py-12">
-        <div className="container mx-auto px-4">
+      <section className="relative text-primary-foreground py-24 md:py-32 overflow-hidden">
+        {/* Background carousel images */}
+        <div className="absolute inset-0">
+          {carouselImages.map((src, i) => (
+            <div
+              key={i}
+              className={`absolute inset-0 transition-opacity duration-1500 ${carouselIndex === i ? 'opacity-100' : 'opacity-0'}`}
+            >
+              <img
+                src={src}
+                alt={`banner-${i}`}
+                className={`w-full h-full object-cover ${i === 2 ? 'object-[center_80%]' : ''}`}
+              />
+              {/* Dark overlay to decrease brightness */}
+              <div className="absolute inset-0 bg-black/60"></div>
+            </div>
+          ))}
+        </div>
+        
+        {/* Content */}
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-3xl md:text-4xl font-bold mb-3">Teen License Behind the Wheel</h1>
-            <p className="text-lg opacity-90 mb-4">
+            <h1 className="text-3xl md:text-4xl font-bold mb-3 text-white drop-shadow-lg">Teen License Behind the Wheel</h1>
+            <p className="text-lg opacity-90 mb-4 text-white drop-shadow-md">
               Professional driving instruction to help teens become safe, confident drivers
             </p>
             <div className="mt-6" />
-            <div className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-4 py-2 rounded-lg font-bold">
+            <div className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-4 py-2 rounded-lg font-bold shadow-lg">
               <span>$400</span>
             </div>
           </div>
         </div>
+
       </section>
 
+      {/* Banner CTA placed directly under hero (pushes content down) */}
+      <div className="container mx-auto px-4 my-10 md:my-12">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-2xl font-bold mb-4">Ready to Start?</h2>
+          <div className="flex justify-center gap-4">
+            <Link to="/payment">
+              <Button className="bg-accent hover:bg-accent/90 text-accent-foreground">Register Now</Button>
+            </Link>
+            <Link to="/contact">
+              <Button variant="outline">Contact Us</Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+
       {/* Main Content */}
-      <section id="main-content" className="py-12 scroll-mt-8">
+      <section id="main-content" className="pt-0 pb-12 scroll-mt-8">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 items-start">
-            {/* Left/main column (spans 2 cols on md+) - centered content */}
-            <div className="md:col-span-2 flex flex-col items-center text-center">
+          <div className="max-w-6xl mx-auto">
             {/* Features Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
               {features.map((feature, index) => (
                 <Card key={index} className="shadow-sm">
                   <CardHeader className="space-y-2">
@@ -100,26 +133,6 @@ const TeenLicense = () => {
                   </CardHeader>
                 </Card>
               ))}
-            </div>
-
-            {/* Centered carousel beneath the features row */}
-            <div className="flex justify-center mb-12">
-              <div className="w-full max-w-3xl">
-                <Card className="shadow-elevation">
-                  <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden">
-                    {carouselImages.map((src, i) => (
-                      <img
-                        key={i}
-                        src={src}
-                        alt={`carousel-${i}`}
-                        loading="lazy"
-                        style={{ transitionDuration: '1500ms' }}
-                        className={`absolute inset-0 w-full h-full object-cover ${carouselIndex === i ? 'opacity-100' : 'opacity-0'}`}
-                      />
-                    ))}
-                  </div>
-                </Card>
-              </div>
             </div>
 
             {/* Program Details */}
@@ -154,11 +167,8 @@ const TeenLicense = () => {
                   <CardTitle className="text-xl mb-4">Requirements</CardTitle>
                   <div className="space-y-3">
                     {requirements.map((req, index) => (
-                      <div key={index} className="flex items-start space-x-2">
-                        <div className="w-5 h-5 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-xs font-bold mt-0.5">
-                          {index + 1}
-                        </div>
-                        <span className="text-sm">{req}</span>
+                      <div key={index}>
+                        <span className="text-sm">• {req}</span>
                       </div>
                     ))}
                   </div>
@@ -222,45 +232,10 @@ const TeenLicense = () => {
               </CardHeader>
             </Card>
 
-            {/* CTA */}
-            <div className="text-center">
-              <h2 className="text-2xl font-bold mb-6">Ready to Start?</h2>
-              <div className="flex justify-center gap-4">
-                <Link to="/payment">
-                  <Button className="bg-accent hover:bg-accent/90 text-accent-foreground">
-                    Register Now
-                  </Button>
-                </Link>
-                <Link to="/contact">
-                  <Button variant="outline">
-                    Contact Us
-                  </Button>
-                </Link>
-              </div>
-            </div>
+            {/* CTA moved into banner */}
             
             {/* Contract Link */}
             <ContractLink />
-            </div>
-
-            {/* Right/side column: image carousel (in a Card to match styling) */}
-            <aside className="md:col-span-1 flex justify-center">
-              <div className="w-full max-w-sm">
-                <Card className="shadow-elevation">
-                  <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden">
-                    {carouselImages.map((src, i) => (
-                      <img
-                        key={i}
-                        src={src}
-                        alt={`carousel-${i}`}
-                        loading="lazy"
-                        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${carouselIndex === i ? 'opacity-100' : 'opacity-0'} border-4 border-white/80 ring-2 ring-accent/40 rounded-lg`}
-                      />
-                    ))}
-                  </div>
-                </Card>
-              </div>
-            </aside>
           </div>
         </div>
       </section>

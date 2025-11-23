@@ -30,7 +30,7 @@ const DriverImprovement = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-primary text-primary-foreground py-12">
+      <section className="bg-gradient-primary text-primary-foreground py-12 relative">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-3xl md:text-4xl font-bold mb-3">Online Driver Improvement</h1>
@@ -43,10 +43,26 @@ const DriverImprovement = () => {
             </div>
           </div>
         </div>
-      </section>
+        {/* Banner CTA (bottom center) */}
+        </section>
+
+        {/* Banner CTA placed directly under hero (pushes content down) */}
+        <div className="container mx-auto px-4 my-10 md:my-12">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-xl font-bold mb-3">Ready to Improve Your Driving Record?</h2>
+            <div className="flex justify-center gap-4">
+              <Link to="/payment">
+                <Button className="bg-accent hover:bg-accent/90 text-accent-foreground">Enroll Now</Button>
+              </Link>
+              <Link to="/contact">
+                <Button variant="outline">Contact Us</Button>
+              </Link>
+            </div>
+          </div>
+        </div>
 
       {/* Main Content */}
-      <section className="py-12">
+      <section className="pt-0 pb-12">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             {/* Features Grid */}
@@ -111,22 +127,7 @@ const DriverImprovement = () => {
               </CardHeader>
             </Card>
 
-            {/* CTA */}
-            <div className="text-center">
-              <h2 className="text-2xl font-bold mb-3">Ready to Improve Your Driving Record?</h2>
-              <div className="flex justify-center gap-4">
-                <Link to="/payment">
-                  <Button className="bg-accent hover:bg-accent/90 text-accent-foreground">
-                    Enroll Now
-                  </Button>
-                </Link>
-                <Link to="/contact">
-                  <Button variant="outline">
-                    Contact Us
-                  </Button>
-                </Link>
-              </div>
-            </div>
+            {/* CTA moved into banner */}
           </div>
         </div>
       </section>

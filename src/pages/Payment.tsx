@@ -39,8 +39,8 @@ const Payment = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: "Payment Processed!",
-      description: "Thank you for your payment. You'll receive a confirmation email shortly.",
+      title: "Payment Successful!",
+      description: "Payment Successful! Thank you for choosing SA Driving School.",
     });
     // Reset form
     setPaymentData({
@@ -52,6 +52,19 @@ const Payment = () => {
       expiry: "",
       cvv: "",
     });
+  };
+
+  // Expiry input helper: sanitize on input and format to MM/YY on blur
+  const onExpiryInputChange = (value: string) => {
+    let v = value.replace(/[^0-9/]/g, '');
+    if (v.length > 5) v = v.slice(0, 5);
+    setPaymentData({ ...paymentData, expiry: v });
+  };
+
+  const formatExpiry = (value: string) => {
+    const digits = (value || '').replace(/\D/g, '').slice(0, 4);
+    if (digits.length <= 2) return digits;
+    return digits.slice(0, 2) + '/' + digits.slice(2);
   };
 
   return (
@@ -156,7 +169,8 @@ const Payment = () => {
                             id="expiry"
                             required
                             value={paymentData.expiry}
-                            onChange={(e) => setPaymentData({ ...paymentData, expiry: e.target.value })}
+                            onChange={(e) => onExpiryInputChange(e.target.value)}
+                            onBlur={(e) => setPaymentData({ ...paymentData, expiry: formatExpiry(e.target.value) })}
                             placeholder="MM/YY"
                             maxLength={5}
                           />
