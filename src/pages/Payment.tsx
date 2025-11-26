@@ -519,9 +519,8 @@ const Payment = () => {
                           />
                         </div>
 
-                        <Button type="submit" size="lg" className="w-full bg-gradient-primary">
-                          <DollarSign className="w-5 h-5 mr-2" />
-                          Submit Registration (${getServiceAmount()})
+                        <Button type="submit" size="lg" className="w-full bg-gradient-accent">
+                          Submit Registration
                         </Button>
                       </>
                     )}
