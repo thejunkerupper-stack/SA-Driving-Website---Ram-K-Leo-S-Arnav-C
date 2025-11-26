@@ -7,7 +7,7 @@ import { componentTagger } from "lovable-tagger";
 export default defineConfig(({ mode }) => ({
   // Use root base in development so `npm run dev` serves at `/` locally.
   // Use the repo path when building for production so GitHub Pages serves assets correctly.
-  base: mode === 'development' ? '/' : '/SA-Driving-Website---Ram-K-Leo-S-Arnav-C/',
+  base: mode === 'development' ? '/' : '/SA-Driving-Site-Final/',
   server: {
     host: "::",
     port: 8080,
