@@ -535,7 +535,12 @@ const Payment = () => {
                 <CardHeader>
                   <CardTitle className="text-white">Make an Online Credit Card Payment</CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="space-y-3">
+                  <img 
+                    src={`${import.meta.env.BASE_URL}creditcards.png`} 
+                    alt="Accepted credit cards" 
+                    className="w-full max-w-[200px] mx-auto"
+                  />
                   <a 
                     href="https://sa-driving-school-inc.square.site/" 
                     target="_blank" 
@@ -565,11 +570,6 @@ const Payment = () => {
                   <div>
                     <p className="font-semibold">Credit Card:</p>
                     <p className="text-muted-foreground">Via Square (5% service fee)</p>
-                    <img 
-                      src={`${import.meta.env.BASE_URL}creditcards.png`} 
-                      alt="Accepted credit cards" 
-                      className="mt-2 w-full max-w-[200px]"
-                    />
                   </div>
                   <div>
                     <p className="font-semibold">Zelle:</p>
