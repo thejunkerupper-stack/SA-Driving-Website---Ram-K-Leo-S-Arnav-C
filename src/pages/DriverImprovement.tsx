@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { Laptop, Clock, Award, CheckCircle, DollarSign, BookOpen } from "lucide-react";
+import { Laptop, Clock, Award, CheckCircle, BookOpen } from "lucide-react";
 
 const DriverImprovement = () => {
   const features = [
@@ -37,10 +37,6 @@ const DriverImprovement = () => {
             <p className="text-lg opacity-90 mb-4">
               Improve your driving record and refresh your skills from home
             </p>
-            <div className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-4 py-2 rounded-lg font-bold">
-              <DollarSign className="w-5 h-5" />
-              <span>Competitive Pricing</span>
-            </div>
           </div>
         </div>
         {/* Banner CTA (bottom center) */}
