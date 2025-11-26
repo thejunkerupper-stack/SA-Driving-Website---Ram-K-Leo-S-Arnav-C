@@ -48,7 +48,7 @@ ${formData.message}
       icon: Phone,
       title: "Phone",
       content: "(703) 982-1400",
-      description: "Mon-Fri 8AM-6PM, Sat 9AM-4PM",
+      description: "Mon-Fri 7:30AM-5:30PM, Sat 9AM-2PM",
     },
     {
       icon: Mail,
@@ -66,8 +66,8 @@ ${formData.message}
     {
       icon: Clock,
       title: "Business Hours",
-      content: "Mon-Fri: 8AM-6PM",
-      description: "Sat: 9AM-4PM, Sun: Closed",
+      content: "Mon-Fri: 7:30AM-5:30PM",
+      description: "Sat: 9AM-2PM, Sun: 9AM-12PM",
     },
     {
       icon: Instagram,
