@@ -6,24 +6,36 @@ import { Car, Clock, MapPin, Award, CheckCircle, DollarSign } from "lucide-react
 const DrivingLessons = () => {
   const packages = [
     {
-      title: "Single Lesson",
-      price: "$60",
-      duration: "1 Hour",
+      title: "Feedback Lesson",
+      price: "$100",
+      duration: "1.5 Hours",
       description: "Quick refresher or specific skills",
       features: [
-        "1 hour instruction",
+        "1.5 hour instruction",
         "Pick-up/drop-off",
         "Flexible timing",
         "One-on-one focus",
       ],
     },
     {
-      title: "5-Lesson Pack",
-      price: "$275",
-      duration: "5 Hours",
+      title: "2 Driving Lessons",
+      price: "$190",
+      duration: "3.0 Hours",
       description: "Build confidence and skills",
       features: [
-        "Save $25",
+        "3 hours instruction",
+        "Track progress",
+        "Priority booking",
+        "Skill development",
+      ],
+    },
+    {
+      title: "3 Driving Lessons",
+      price: "$270",
+      duration: "4.5 Hours",
+      description: "Build confidence and skills",
+      features: [
+        "4.5 hours instruction",
         "Track progress",
         "Priority booking",
         "Skill development",
@@ -31,12 +43,24 @@ const DrivingLessons = () => {
       popular: true,
     },
     {
-      title: "10-Lesson Pack",
-      price: "$500",
-      duration: "10 Hours",
+      title: "4 Driving Lessons",
+      price: "$360",
+      duration: "6.0 Hours",
       description: "Complete driver training",
       features: [
-        "Save $100",
+        "6 hours instruction",
+        "Road test prep",
+        "Full coverage",
+        "Best value",
+      ],
+    },
+    {
+      title: "5 Driving Lessons",
+      price: "$450",
+      duration: "7.5 Hours",
+      description: "Complete driver training",
+      features: [
+        "7.5 hours instruction",
         "Road test prep",
         "Full coverage",
         "Best value",
@@ -116,7 +140,7 @@ const DrivingLessons = () => {
             </div>
 
             {/* Packages */}
-            <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <div className="grid md:grid-cols-5 gap-6 mb-12">
               {packages.map((pkg, index) => (
                 <Card
                   key={index}
