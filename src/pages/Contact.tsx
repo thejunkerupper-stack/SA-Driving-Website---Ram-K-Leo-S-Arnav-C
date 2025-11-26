@@ -140,16 +140,16 @@ ${formData.message}
           </div>
         </div>
 
-        {/* Scroll Arrow - positioned between Business Hours and Instagram */}
+        {/* Scroll Arrow - positioned lower, centered between cards and form */}
         <button 
           onClick={() => {
-            const form = document.querySelector('form');
-            form?.scrollIntoView({ 
+            const formSection = document.getElementById('contact-form');
+            formSection?.scrollIntoView({ 
               behavior: 'smooth',
               block: 'start'
             });
           }}
-          className="absolute bottom-1/2 left-1/2 -translate-x-1/2 translate-y-1/2 z-10 p-4 text-foreground hover:text-primary transition-all duration-300 motion-safe:animate-[bounce_2s_infinite]"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 p-4 text-foreground hover:text-primary transition-all duration-300 motion-safe:animate-[bounce_2s_infinite]"
           aria-label="Scroll to form"
         >
           <svg 
@@ -169,7 +169,7 @@ ${formData.message}
       </section>
 
       {/* Contact Form */}
-      <section className="py-16">
+      <section id="contact-form" className="py-16 scroll-mt-8">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <Card className="shadow-strong">
