@@ -3,8 +3,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { CreditCard, DollarSign, CheckCircle } from "lucide-react";
+import { DollarSign, CheckCircle } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -12,20 +13,56 @@ const Payment = () => {
   const { toast } = useToast();
   const [paymentData, setPaymentData] = useState({
     service: "",
-    amount: "",
     name: "",
     email: "",
-    cardNumber: "",
-    expiry: "",
-    cvv: "",
+    studentCell: "",
+    parentCell: "",
+    altCell: "",
+    address: "",
+    contactMethod: "",
+    birthday: "",
+    permitIssued: "",
+    fortyFiveHoursComplete: "",
+    driversEdCert: "",
+    availability: "",
+    highSchool: "",
+    drivingExperience: "",
+    currentDrivingExp: "",
+    nearbyHighSchool: "",
+    comments: "",
   });
 
   const services = [
-    { value: "teen-license", label: "Teen License Behind the Wheel - $495", amount: "495" },
-    { value: "single-lesson", label: "Single Driving Lesson - $65", amount: "65" },
-    { value: "5-lessons", label: "5-Lesson Package - $300", amount: "300" },
-    { value: "10-lessons", label: "10-Lesson Package - $550", amount: "550" },
-    { value: "driver-improvement", label: "Online Driver Improvement - $100", amount: "100" },
+    { value: "teen-license", label: "Teen License Behind the Wheel", amount: "400", type: "teen" },
+    { value: "adult-waiver", label: "Adult License Waiver Course", amount: "400", type: "adult" },
+    { value: "adult-online", label: "Adult Online Drivers Ed", amount: "150", type: "adult" },
+    { value: "feedback", label: "Feedback Lesson", amount: "100", type: "lessons" },
+    { value: "2-lessons", label: "2 Driving Lessons", amount: "190", type: "lessons" },
+    { value: "3-lessons", label: "3 Driving Lessons", amount: "270", type: "lessons" },
+    { value: "4-lessons", label: "4 Driving Lessons", amount: "360", type: "lessons" },
+    { value: "5-lessons", label: "5 Driving Lessons", amount: "450", type: "lessons" },
+    { value: "reexam", label: "Re-examination Course", amount: "400", type: "lessons" },
+  ];
+
+  const highSchools = [
+    "Briar Woods High School",
+    "Broad Run High School", 
+    "Dominion High School",
+    "Freedom High School",
+    "Heritage High School",
+    "Independence High School",
+    "John Champe High School",
+    "Lightridge High School",
+    "Loudoun County High School",
+    "Loudoun Valley High School",
+    "Park View High School",
+    "Potomac Falls High School",
+    "Riverside High School",
+    "Rock Ridge High School",
+    "Stone Bridge High School",
+    "Tuscarora High School",
+    "Woodgrove High School",
+    "Other (see comments)"
   ];
 
   const handleServiceChange = (value: string) => {
@@ -33,39 +70,62 @@ const Payment = () => {
     setPaymentData({
       ...paymentData,
       service: value,
-      amount: selected?.amount || "",
+      // Reset conditional fields when service changes
+      studentCell: "",
+      parentCell: "",
+      altCell: "",
+      address: "",
+      contactMethod: "",
+      birthday: "",
+      permitIssued: "",
+      fortyFiveHoursComplete: "",
+      driversEdCert: "",
+      availability: "",
+      highSchool: "",
+      drivingExperience: "",
+      currentDrivingExp: "",
+      nearbyHighSchool: "",
+      comments: "",
     });
+  };
+
+  const getServiceType = () => {
+    const selected = services.find((s) => s.value === paymentData.service);
+    return selected?.type || null;
+  };
+
+  const getServiceAmount = () => {
+    const selected = services.find((s) => s.value === paymentData.service);
+    return selected?.amount || "";
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: "Payment Successful!",
-      description: "Payment Successful! Thank you for choosing SA Driving School.",
+      title: "Registration Successful!",
+      description: "Thank you for choosing SA Driving School. We'll contact you shortly!",
     });
     // Reset form
     setPaymentData({
       service: "",
-      amount: "",
       name: "",
       email: "",
-      cardNumber: "",
-      expiry: "",
-      cvv: "",
+      studentCell: "",
+      parentCell: "",
+      altCell: "",
+      address: "",
+      contactMethod: "",
+      birthday: "",
+      permitIssued: "",
+      fortyFiveHoursComplete: "",
+      driversEdCert: "",
+      availability: "",
+      highSchool: "",
+      drivingExperience: "",
+      currentDrivingExp: "",
+      nearbyHighSchool: "",
+      comments: "",
     });
-  };
-
-  // Expiry input helper: sanitize on input and format to MM/YY on blur
-  const onExpiryInputChange = (value: string) => {
-    let v = value.replace(/[^0-9/]/g, '');
-    if (v.length > 5) v = v.slice(0, 5);
-    setPaymentData({ ...paymentData, expiry: v });
-  };
-
-  const formatExpiry = (value: string) => {
-    const digits = (value || '').replace(/\D/g, '').slice(0, 4);
-    if (digits.length <= 2) return digits;
-    return digits.slice(0, 2) + '/' + digits.slice(2);
   };
 
   return (
@@ -99,101 +159,372 @@ const Payment = () => {
                         <SelectContent>
                           {services.map((service) => (
                             <SelectItem key={service.value} value={service.value}>
-                              {service.label}
+                              {service.label} - ${service.amount}
                             </SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
                     </div>
 
-                    {/* Amount */}
-                    <div className="space-y-2">
-                      <Label htmlFor="amount">Amount ($)</Label>
-                      <div className="relative">
-                        <DollarSign className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
-                        <Input
-                          id="amount"
-                          readOnly
-                          value={paymentData.amount ? `$${paymentData.amount}` : ''}
-                          className="pl-8 bg-muted"
-                          placeholder="Select a service to see price"
-                        />
-                      </div>
-                    </div>
+                    {/* Basic Info - Always shown after service selection */}
+                    {paymentData.service && (
+                      <>
+                        <div className="grid md:grid-cols-2 gap-4">
+                          <div className="space-y-2">
+                            <Label htmlFor="name">Full Name *</Label>
+                            <Input
+                              id="name"
+                              required
+                              value={paymentData.name}
+                              onChange={(e) => setPaymentData({ ...paymentData, name: e.target.value })}
+                              placeholder="John Doe"
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="email">Email Address *</Label>
+                            <Input
+                              id="email"
+                              type="email"
+                              required
+                              value={paymentData.email}
+                              onChange={(e) => setPaymentData({ ...paymentData, email: e.target.value })}
+                              placeholder="john@example.com"
+                            />
+                          </div>
+                        </div>
 
-                    {/* Personal Info */}
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="name">Full Name *</Label>
-                        <Input
-                          id="name"
-                          required
-                          value={paymentData.name}
-                          onChange={(e) => setPaymentData({ ...paymentData, name: e.target.value })}
-                          placeholder="John Doe"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="email">Email Address *</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          required
-                          value={paymentData.email}
-                          onChange={(e) => setPaymentData({ ...paymentData, email: e.target.value })}
-                          placeholder="john@example.com"
-                        />
-                      </div>
-                    </div>
+                        {/* Teen License Fields */}
+                        {getServiceType() === "teen" && (
+                          <>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="space-y-2">
+                                <Label htmlFor="studentCell">Student Cell *</Label>
+                                <Input
+                                  id="studentCell"
+                                  type="tel"
+                                  required
+                                  value={paymentData.studentCell}
+                                  onChange={(e) => setPaymentData({ ...paymentData, studentCell: e.target.value })}
+                                  placeholder="(555) 123-4567"
+                                />
+                              </div>
+                              <div className="space-y-2">
+                                <Label htmlFor="parentCell">Parent Cell *</Label>
+                                <Input
+                                  id="parentCell"
+                                  type="tel"
+                                  required
+                                  value={paymentData.parentCell}
+                                  onChange={(e) => setPaymentData({ ...paymentData, parentCell: e.target.value })}
+                                  placeholder="(555) 123-4567"
+                                />
+                              </div>
+                            </div>
 
-                    {/* Card Info */}
-                    <div className="space-y-4 pt-4 border-t border-border">
-                      <div className="flex items-center gap-2 text-sm font-medium">
-                        <CreditCard className="w-4 h-4" />
-                        <span>Card Information</span>
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="cardNumber">Card Number *</Label>
-                        <Input
-                          id="cardNumber"
-                          required
-                          value={paymentData.cardNumber}
-                          onChange={(e) => setPaymentData({ ...paymentData, cardNumber: e.target.value })}
-                          placeholder="1234 5678 9012 3456"
-                          maxLength={19}
-                        />
-                      </div>
-                      <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                              <Label htmlFor="address">Address *</Label>
+                              <Input
+                                id="address"
+                                required
+                                value={paymentData.address}
+                                onChange={(e) => setPaymentData({ ...paymentData, address: e.target.value })}
+                                placeholder="123 Main St, City, State, ZIP"
+                              />
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label htmlFor="contactMethod">Contact Method *</Label>
+                              <Select value={paymentData.contactMethod} onValueChange={(value) => setPaymentData({ ...paymentData, contactMethod: value })}>
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Choose contact method" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="student">Text Message to Student Cell</SelectItem>
+                                  <SelectItem value="parent">Text Message to Parent Cell</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="space-y-2">
+                                <Label htmlFor="birthday">Birthday *</Label>
+                                <Input
+                                  id="birthday"
+                                  type="date"
+                                  required
+                                  value={paymentData.birthday}
+                                  onChange={(e) => setPaymentData({ ...paymentData, birthday: e.target.value })}
+                                />
+                              </div>
+                              <div className="space-y-2">
+                                <Label htmlFor="permitIssued">Permit Issued Date *</Label>
+                                <Input
+                                  id="permitIssued"
+                                  type="date"
+                                  required
+                                  value={paymentData.permitIssued}
+                                  onChange={(e) => setPaymentData({ ...paymentData, permitIssued: e.target.value })}
+                                />
+                              </div>
+                            </div>
+
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="space-y-2">
+                                <Label htmlFor="fortyFiveHours">45 Hours Training Completed *</Label>
+                                <Select value={paymentData.fortyFiveHoursComplete} onValueChange={(value) => setPaymentData({ ...paymentData, fortyFiveHoursComplete: value })}>
+                                  <SelectTrigger>
+                                    <SelectValue placeholder="Select" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    <SelectItem value="yes">Yes</SelectItem>
+                                    <SelectItem value="no">No</SelectItem>
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                              <div className="space-y-2">
+                                <Label htmlFor="driversEdCert">Drivers Ed Certificate *</Label>
+                                <Select value={paymentData.driversEdCert} onValueChange={(value) => setPaymentData({ ...paymentData, driversEdCert: value })}>
+                                  <SelectTrigger>
+                                    <SelectValue placeholder="Select" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    <SelectItem value="yes">Yes</SelectItem>
+                                    <SelectItem value="no">No</SelectItem>
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label htmlFor="availability">Availability *</Label>
+                              <Select value={paymentData.availability} onValueChange={(value) => setPaymentData({ ...paymentData, availability: value })}>
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Select availability" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="before">Before School</SelectItem>
+                                  <SelectItem value="after">After School</SelectItem>
+                                  <SelectItem value="both">Both/Flex</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label htmlFor="highSchool">Your High School Name (Optional)</Label>
+                              <Input
+                                id="highSchool"
+                                value={paymentData.highSchool}
+                                onChange={(e) => setPaymentData({ ...paymentData, highSchool: e.target.value })}
+                                placeholder="Enter your high school name"
+                              />
+                            </div>
+                          </>
+                        )}
+
+                        {/* Adult License/Online Drivers Ed Fields */}
+                        {getServiceType() === "adult" && (
+                          <>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="space-y-2">
+                                <Label htmlFor="studentCell">Student Cell Number *</Label>
+                                <Input
+                                  id="studentCell"
+                                  type="tel"
+                                  required
+                                  value={paymentData.studentCell}
+                                  onChange={(e) => setPaymentData({ ...paymentData, studentCell: e.target.value })}
+                                  placeholder="(555) 123-4567"
+                                />
+                              </div>
+                              <div className="space-y-2">
+                                <Label htmlFor="altCell">Alt Cell (Optional)</Label>
+                                <Input
+                                  id="altCell"
+                                  type="tel"
+                                  value={paymentData.altCell}
+                                  onChange={(e) => setPaymentData({ ...paymentData, altCell: e.target.value })}
+                                  placeholder="(555) 123-4567"
+                                />
+                              </div>
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label htmlFor="address">Address *</Label>
+                              <Input
+                                id="address"
+                                required
+                                value={paymentData.address}
+                                onChange={(e) => setPaymentData({ ...paymentData, address: e.target.value })}
+                                placeholder="123 Main St, City, State, ZIP"
+                              />
+                            </div>
+
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="space-y-2">
+                                <Label htmlFor="birthday">Birthday *</Label>
+                                <Input
+                                  id="birthday"
+                                  type="date"
+                                  required
+                                  value={paymentData.birthday}
+                                  onChange={(e) => setPaymentData({ ...paymentData, birthday: e.target.value })}
+                                />
+                              </div>
+                              <div className="space-y-2">
+                                <Label htmlFor="permitIssued">Permit Issued *</Label>
+                                <Input
+                                  id="permitIssued"
+                                  type="date"
+                                  required
+                                  value={paymentData.permitIssued}
+                                  onChange={(e) => setPaymentData({ ...paymentData, permitIssued: e.target.value })}
+                                />
+                              </div>
+                            </div>
+
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="space-y-2">
+                                <Label htmlFor="drivingExperience">Driving Experience *</Label>
+                                <Select value={paymentData.drivingExperience} onValueChange={(value) => setPaymentData({ ...paymentData, drivingExperience: value })}>
+                                  <SelectTrigger>
+                                    <SelectValue placeholder="Select experience" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    <SelectItem value="none">---</SelectItem>
+                                    <SelectItem value="10hrs">10 hrs</SelectItem>
+                                    <SelectItem value="20hrs">20 hrs</SelectItem>
+                                    <SelectItem value="30hrs">30 hrs</SelectItem>
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                              <div className="space-y-2">
+                                <Label htmlFor="driversEdCert">Drivers Ed Certificate *</Label>
+                                <Select value={paymentData.driversEdCert} onValueChange={(value) => setPaymentData({ ...paymentData, driversEdCert: value })}>
+                                  <SelectTrigger>
+                                    <SelectValue placeholder="Select" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    <SelectItem value="yes">Yes</SelectItem>
+                                    <SelectItem value="no">No</SelectItem>
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                            </div>
+                          </>
+                        )}
+
+                        {/* Lessons/Feedback/Reexam Fields */}
+                        {getServiceType() === "lessons" && (
+                          <>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="space-y-2">
+                                <Label htmlFor="studentCell">Student Cell Number *</Label>
+                                <Input
+                                  id="studentCell"
+                                  type="tel"
+                                  required
+                                  value={paymentData.studentCell}
+                                  onChange={(e) => setPaymentData({ ...paymentData, studentCell: e.target.value })}
+                                  placeholder="(555) 123-4567"
+                                />
+                              </div>
+                              <div className="space-y-2">
+                                <Label htmlFor="altCell">Alt Cell (Optional)</Label>
+                                <Input
+                                  id="altCell"
+                                  type="tel"
+                                  value={paymentData.altCell}
+                                  onChange={(e) => setPaymentData({ ...paymentData, altCell: e.target.value })}
+                                  placeholder="(555) 123-4567"
+                                />
+                              </div>
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label htmlFor="address">Address *</Label>
+                              <Input
+                                id="address"
+                                required
+                                value={paymentData.address}
+                                onChange={(e) => setPaymentData({ ...paymentData, address: e.target.value })}
+                                placeholder="123 Main St, City, State, ZIP"
+                              />
+                            </div>
+
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="space-y-2">
+                                <Label htmlFor="birthday">Birthday *</Label>
+                                <Input
+                                  id="birthday"
+                                  type="date"
+                                  required
+                                  value={paymentData.birthday}
+                                  onChange={(e) => setPaymentData({ ...paymentData, birthday: e.target.value })}
+                                />
+                              </div>
+                              <div className="space-y-2">
+                                <Label htmlFor="permitIssued">Permit Issued *</Label>
+                                <Input
+                                  id="permitIssued"
+                                  type="date"
+                                  required
+                                  value={paymentData.permitIssued}
+                                  onChange={(e) => setPaymentData({ ...paymentData, permitIssued: e.target.value })}
+                                />
+                              </div>
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label htmlFor="currentDrivingExp">Current Driving Experience *</Label>
+                              <Select value={paymentData.currentDrivingExp} onValueChange={(value) => setPaymentData({ ...paymentData, currentDrivingExp: value })}>
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Select experience level" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="beginner">Beginner - 0 hrs</SelectItem>
+                                  <SelectItem value="parking">Parking Lot - 1-5 hours</SelectItem>
+                                  <SelectItem value="onroad">On Road - 5-10 hours</SelectItem>
+                                  <SelectItem value="experienced">10+ hrs experience</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label htmlFor="nearbyHighSchool">Nearby High School *</Label>
+                              <Select value={paymentData.nearbyHighSchool} onValueChange={(value) => setPaymentData({ ...paymentData, nearbyHighSchool: value })}>
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Select a high school" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  {highSchools.map((school) => (
+                                    <SelectItem key={school} value={school}>
+                                      {school}
+                                    </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                            </div>
+                          </>
+                        )}
+
+                        {/* Comments/Requests - shown for all services */}
                         <div className="space-y-2">
-                          <Label htmlFor="expiry">Expiry Date *</Label>
-                          <Input
-                            id="expiry"
-                            required
-                            value={paymentData.expiry}
-                            onChange={(e) => onExpiryInputChange(e.target.value)}
-                            onBlur={(e) => setPaymentData({ ...paymentData, expiry: formatExpiry(e.target.value) })}
-                            placeholder="MM/YY"
-                            maxLength={5}
+                          <Label htmlFor="comments">Comments/Requests (Optional)</Label>
+                          <Textarea
+                            id="comments"
+                            value={paymentData.comments}
+                            onChange={(e) => setPaymentData({ ...paymentData, comments: e.target.value })}
+                            placeholder="Any additional information or special requests..."
+                            rows={4}
                           />
                         </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="cvv">CVV *</Label>
-                          <Input
-                            id="cvv"
-                            required
-                            value={paymentData.cvv}
-                            onChange={(e) => setPaymentData({ ...paymentData, cvv: e.target.value })}
-                            placeholder="123"
-                            maxLength={4}
-                          />
-                        </div>
-                      </div>
-                    </div>
 
-                    <Button type="submit" size="lg" className="w-full bg-gradient-primary">
-                      <DollarSign className="w-5 h-5 mr-2" />
-                      Process Payment
-                    </Button>
+                        <Button type="submit" size="lg" className="w-full bg-gradient-primary">
+                          <DollarSign className="w-5 h-5 mr-2" />
+                          Submit Registration (${getServiceAmount()})
+                        </Button>
+                      </>
+                    )}
                   </form>
                 </CardContent>
               </Card>
