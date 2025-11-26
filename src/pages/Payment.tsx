@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { DollarSign, CheckCircle } from "lucide-react";
+import { DollarSign, CheckCircle, Download } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -520,9 +520,21 @@ const Payment = () => {
                           />
                         </div>
 
-                        <Button type="submit" size="lg" className="w-full bg-gradient-accent">
-                          Submit Registration
-                        </Button>
+                        <div className="flex flex-col gap-3">
+                          <Button type="submit" size="lg" className="w-full bg-gradient-accent">
+                            Submit Registration
+                          </Button>
+                          <a
+                            href={`${import.meta.env.BASE_URL}contract.pdf`}
+                            download="SA-Driving-School-Contract.pdf"
+                            className="w-full"
+                          >
+                            <Button type="button" variant="outline" size="lg" className="w-full">
+                              <Download className="w-4 h-4 mr-2" />
+                              Download Contract
+                            </Button>
+                          </a>
+                        </div>
                       </>
                     )}
                   </form>
