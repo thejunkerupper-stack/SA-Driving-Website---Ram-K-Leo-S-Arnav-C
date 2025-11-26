@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { Car, Clock, MapPin, Award, CheckCircle, DollarSign } from "lucide-react";
+import { Car, Clock, MapPin, Award, CheckCircle } from "lucide-react";
 
 const DrivingLessons = () => {
   const packages = [
@@ -155,9 +155,8 @@ const DrivingLessons = () => {
                   )}
                   <CardHeader className="text-center pb-4">
                     <CardTitle className="text-xl mb-2">{pkg.title}</CardTitle>
-                    <div className="flex items-center justify-center gap-1 text-3xl font-bold text-accent mb-1">
-                      <DollarSign className="w-6 h-6" />
-                      <span>{pkg.price.replace("$", "")}</span>
+                    <div className="text-3xl font-bold text-accent mb-1">
+                      {pkg.price}
                     </div>
                     <div className="text-sm text-muted-foreground mb-2">{pkg.duration}</div>
                     <CardDescription>{pkg.description}</CardDescription>

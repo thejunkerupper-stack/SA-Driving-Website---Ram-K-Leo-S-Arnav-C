@@ -35,6 +35,7 @@ const Payment = () => {
   const services = [
     { value: "teen-license", label: "Teen License Behind the Wheel", amount: "400", type: "teen" },
     { value: "adult-waiver", label: "Adult License Waiver Course", amount: "400", type: "adult" },
+    { value: "teen-online", label: "Teen Online Drivers Ed", amount: "175", type: "adult" },
     { value: "adult-online", label: "Adult Online Drivers Ed", amount: "150", type: "adult" },
     { value: "feedback", label: "Feedback Lesson", amount: "100", type: "lessons" },
     { value: "2-lessons", label: "2 Driving Lessons", amount: "190", type: "lessons" },
