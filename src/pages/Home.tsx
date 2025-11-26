@@ -144,7 +144,7 @@ const Home = () => {
       {/* CTA Section */}
       <section className="py-12 bg-muted">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-8 items-center mb-8">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <div className="border-2 border-border rounded-lg p-6">
                 <h2 className="text-3xl font-bold text-foreground mb-4">Why Choose Us?</h2>
@@ -168,39 +168,34 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="bg-gradient-primary rounded-xl p-6 text-primary-foreground">
-              <h3 className="text-2xl font-bold mb-2">Ready to Start?</h3>
-              <p className="text-sm mb-4 opacity-90">Join hundreds of satisfied students who have learned to drive with us.</p>
-              <Link to="/payment">
-                <Button className="bg-accent hover:bg-accent/90 text-accent-foreground w-full">
-                  Register Today
-                </Button>
-              </Link>
+            <div className="space-y-4">
+              <div className="bg-gradient-primary rounded-xl p-6 text-primary-foreground">
+                <h3 className="text-2xl font-bold mb-2">Ready to Start?</h3>
+                <p className="text-sm mb-4 opacity-90">Join hundreds of satisfied students who have learned to drive with us.</p>
+                <Link to="/payment">
+                  <Button className="bg-accent hover:bg-accent/90 text-accent-foreground w-full">
+                    Register Today
+                  </Button>
+                </Link>
+              </div>
+              
+              <a 
+                href="https://www.instagram.com/sadrivingva/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <Card className="shadow-elevation cursor-pointer transition-transform hover:scale-105">
+                  <CardContent className="flex items-center justify-center gap-3 py-4">
+                    <Instagram className="w-6 h-6 text-primary" />
+                    <div>
+                      <p className="font-semibold text-foreground">Follow @sadrivingva</p>
+                      <p className="text-xs text-muted-foreground">Stay updated on Instagram</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </a>
             </div>
-          </div>
-
-          {/* Instagram and Image Section */}
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <img 
-                src={`${import.meta.env.BASE_URL}sadrivingimage2.jpg`} 
-                alt="SA Driving School" 
-                className="rounded-lg shadow-strong w-full h-auto"
-              />
-            </div>
-            <Card 
-              className="shadow-elevation cursor-pointer transition-transform hover:scale-105"
-              onClick={() => window.open('https://www.instagram.com/sadrivingva/', '_blank')}
-            >
-              <CardHeader>
-                <Instagram className="w-10 h-10 text-primary mx-auto mb-2" />
-                <CardTitle className="text-center">Follow Us on Instagram</CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                <p className="font-semibold text-foreground mb-1">@sadrivingva</p>
-                <p className="text-sm text-muted-foreground">Follow us for updates, tips, and success stories!</p>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>
