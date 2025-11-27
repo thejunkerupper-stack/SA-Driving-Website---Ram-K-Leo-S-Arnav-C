@@ -1,48 +1,7 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/hooks/use-toast";
-import { Phone, Mail, MapPin, Clock, Send, Instagram } from "lucide-react";
-import { useState } from "react";
-import emailjs from '@emailjs/browser';
+import { Phone, Mail, MapPin, Clock, Instagram } from "lucide-react";
 
 const Contact = () => {
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    subject: "",
-    message: "",
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Construct email body with all form information
-    const emailBody = `
-Name: ${formData.name}
-Phone: ${formData.phone}
-Email: ${formData.email}
-
-${formData.message}
-    `;
-    
-    // Create mailto link with all information
-    const mailtoLink = `mailto:hemanya.katram@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(emailBody)}`;
-    
-    // Open default email client
-    window.location.href = mailtoLink;
-    
-    toast({
-      title: "Opening Email Client",
-      description: "Your default email app will open to send the message.",
-    });
-  };
-
   const contactInfo = [
     {
       icon: Phone,
@@ -178,76 +137,17 @@ ${formData.message}
                 <CardDescription>Fill out the form below and we'll get back to you shortly</CardDescription>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Name *</Label>
-                      <Input
-                        id="name"
-                        required
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="Your name"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="phone">Phone Number *</Label>
-                      <Input
-                        id="phone"
-                        type="tel"
-                        required
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="(555) 123-4567"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email Address *</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="your.email@example.com"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="subject">Subject *</Label>
-                    <Input
-                      id="subject"
-                      required
-                      value={formData.subject}
-                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      placeholder="What's this regarding?"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Message *</Label>
-                    <Textarea
-                      id="message"
-                      required
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Tell us how we can help you..."
-                      rows={6}
-                    />
-                  </div>
-
-                  <Button 
-                    type="submit" 
-                    size="lg" 
-                    className="w-full bg-gradient-primary"
-                    disabled={isSubmitting}
-                  >
-                    <Send className="w-4 h-4 mr-2" />
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </Button>
-                </form>
+                <iframe 
+                  data-tally-src="https://tally.so/embed/jaelN4?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
+                  loading="lazy" 
+                  width="100%" 
+                  height="324" 
+                  frameBorder="0" 
+                  marginHeight={0}
+                  marginWidth={0}
+                  title="Contact form"
+                  style={{ border: 'none' }}
+                ></iframe>
               </CardContent>
             </Card>
           </div>
