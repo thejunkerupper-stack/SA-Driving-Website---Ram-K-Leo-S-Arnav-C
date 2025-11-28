@@ -1,7 +1,18 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Phone, Mail, MapPin, Clock, Instagram } from "lucide-react";
+import { useEffect } from "react";
 
 const Contact = () => {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://tally.so/widgets/embed.js';
+    script.async = true;
+    document.body.appendChild(script);
+    
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
   const contactInfo = [
     {
       icon: Phone,

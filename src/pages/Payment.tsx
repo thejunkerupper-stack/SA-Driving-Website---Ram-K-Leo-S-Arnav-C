@@ -2,8 +2,19 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Download } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const Payment = () => {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://tally.so/widgets/embed.js';
+    script.async = true;
+    document.body.appendChild(script);
+    
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
   return (
     <div className="min-h-screen py-12 bg-muted">
       <div className="container mx-auto px-4">
