@@ -71,7 +71,7 @@ const Footer = () => {
             </a>
           </div>
           <p className="mb-2 font-bold italic">SA Driving School INC is Insured, Bonded, and Licensed by the Department of Motor Vehicles (DMV) of Commonwealth of Virginia.</p>
-          <p className="font-bold italic">&copy; 2025. SA DRIVING SCHOOL. All rights reserved.</p>
+          <p className="font-bold italic">Copyright 2025. SA DRIVING SCHOOL. All rights reserved.</p>
           <p className="text-xs mt-2">Website designed by Hemanya Katram, Leo Su, and Arnav Choudhary</p>
         </div>
       </div>
