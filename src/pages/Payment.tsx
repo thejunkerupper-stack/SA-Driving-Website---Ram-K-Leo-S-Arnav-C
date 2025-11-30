@@ -26,11 +26,10 @@ const Payment = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Left Sidebar - Advisories & Payment Info */}
-            <div className="space-y-6">
-              {/* Important Advisories */}
-              <Card className="shadow-elevation border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50">
+          <div className="grid md:grid-cols-4 gap-8">
+            {/* Important Advisories - New Left Column */}
+            <div className="md:col-span-1">
+              <Card className="shadow-elevation border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 sticky top-24">
                 <CardHeader>
                   <CardTitle className="text-lg flex items-center gap-2 text-amber-900">
                     <AlertCircle className="w-5 h-5 text-amber-600" />
@@ -58,7 +57,45 @@ const Payment = () => {
                   </ul>
                 </CardContent>
               </Card>
+            </div>
 
+            {/* Payment Form - Middle Column */}
+            <div className="md:col-span-2">
+              <Card className="shadow-strong">
+                <CardHeader>
+                  <CardTitle className="text-foreground">Registration Details</CardTitle>
+                  <CardDescription>Please enter your registration information</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <iframe 
+                    data-tally-src="https://tally.so/embed/yPXJVx?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
+                    loading="lazy" 
+                    width="100%" 
+                    height="1489" 
+                    frameBorder="0" 
+                    marginHeight={0}
+                    marginWidth={0}
+                    title="Registration form"
+                    style={{ border: 'none' }}
+                  ></iframe>
+                  <div className="mt-6">
+                    <a
+                      href={`${import.meta.env.BASE_URL}contract.pdf`}
+                      download="SA-Driving-School-Contract.pdf"
+                      className="w-full block"
+                    >
+                      <Button type="button" variant="outline" size="lg" className="w-full">
+                        <Download className="w-4 h-4 mr-2" />
+                        Download Contract
+                      </Button>
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Payment Info Sidebar - Right Column */}
+            <div className="md:col-span-1 space-y-6">
               <Card className="shadow-elevation">
                 <CardHeader>
                   <CardTitle>We Accept</CardTitle>
@@ -115,41 +152,6 @@ const Payment = () => {
                   <Link to="/contact" className="text-primary hover:underline font-medium">
                     Contact Support →
                   </Link>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Registration Form */}
-            <div className="md:col-span-2">
-              <Card className="shadow-strong">
-                <CardHeader>
-                  <CardTitle className="text-foreground">Registration Details</CardTitle>
-                  <CardDescription>Please enter your registration information</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <iframe 
-                    data-tally-src="https://tally.so/embed/yPXJVx?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
-                    loading="lazy" 
-                    width="100%" 
-                    height="1489" 
-                    frameBorder="0" 
-                    marginHeight={0}
-                    marginWidth={0}
-                    title="Registration form"
-                    style={{ border: 'none' }}
-                  ></iframe>
-                  <div className="mt-6">
-                    <a
-                      href={`${import.meta.env.BASE_URL}contract.pdf`}
-                      download="SA-Driving-School-Contract.pdf"
-                      className="w-full block"
-                    >
-                      <Button type="button" variant="outline" size="lg" className="w-full">
-                        <Download className="w-4 h-4 mr-2" />
-                        Download Contract
-                      </Button>
-                    </a>
-                  </div>
                 </CardContent>
               </Card>
             </div>
