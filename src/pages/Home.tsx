@@ -49,7 +49,7 @@ const Home = () => {
     <div className="min-h-screen -mt-20">
       {/* Hero Section */}
       <section className="relative text-white h-screen flex flex-col justify-center items-center pt-20" style={{
-        backgroundImage: `url("${import.meta.env.BASE_URL}banner-image.avif")`,
+        backgroundImage: `url("${import.meta.env.BASE_URL}logo.png")`,
         backgroundSize: 'cover',
         backgroundPosition: 'center'
       }}>
