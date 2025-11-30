@@ -47,9 +47,9 @@ const DriverImprovement = () => {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-xl font-bold mb-3">Ready to Improve Your Driving Record?</h2>
             <div className="flex justify-center gap-4">
-              <Link to="/payment">
+              <a href="https://online.sadriving.com" target="_blank" rel="noopener noreferrer">
                 <Button className="bg-accent hover:bg-accent/90 text-accent-foreground">Enroll Now</Button>
-              </Link>
+              </a>
               <Link to="/contact">
                 <Button variant="outline">Contact Us</Button>
               </Link>
