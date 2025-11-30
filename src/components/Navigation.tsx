@@ -52,10 +52,10 @@ const Navigation = () => {
               className="w-12 h-12 rounded-lg object-cover"
             />
             <div className="flex flex-col">
-              <span className={`font-bold text-lg leading-none transition-colors ${
+              <span className={`font-bold text-xl leading-none transition-colors ${
                 (location.pathname === "/" && !isScrolled && !mobileMenuOpen) ? 'text-white' : 'text-foreground'
               }`}>SA Driving School</span>
-              <span className={`text-xs transition-colors ${
+              <span className={`text-sm transition-colors ${
                 (location.pathname === "/" && !isScrolled && !mobileMenuOpen) ? 'text-white/80' : 'text-muted-foreground'
               }`}>Inc.</span>
             </div>
@@ -68,8 +68,8 @@ const Navigation = () => {
             <Link to="/">
               <Button
                 variant={location.pathname === "/" ? "default" : "ghost"}
-                size="sm"
-                className={`text-sm ${(location.pathname === "/" && !isScrolled) && !mobileMenuOpen && 'text-white hover:text-white'}`}
+                size="default"
+                className={`text-base ${(location.pathname === "/" && !isScrolled) && !mobileMenuOpen && 'text-white hover:text-white'}`}
               >
                 Home
               </Button>
@@ -79,8 +79,8 @@ const Navigation = () => {
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
-                  size="sm"
-                  className={`text-sm ${(location.pathname === "/" && !isScrolled) && !mobileMenuOpen && 'text-white hover:text-white'}`}
+                  size="default"
+                  className={`text-base ${(location.pathname === "/" && !isScrolled) && !mobileMenuOpen && 'text-white hover:text-white'}`}
                 >
                   Programs <ChevronDown className="ml-1 h-4 w-4" />
                 </Button>
@@ -99,8 +99,8 @@ const Navigation = () => {
             <Link to="/payment">
               <Button
                 variant={location.pathname === "/payment" ? "default" : "ghost"}
-                size="sm"
-                className={`text-sm ${(location.pathname === "/" && !isScrolled && !mobileMenuOpen) ? 'text-white hover:text-white' : ''}`}
+                size="default"
+                className={`text-base ${(location.pathname === "/" && !isScrolled && !mobileMenuOpen) ? 'text-white hover:text-white' : ''}`}
               >
                 Register
               </Button>
@@ -109,8 +109,8 @@ const Navigation = () => {
             <Link to="/contact">
               <Button
                 variant={location.pathname === "/contact" ? "default" : "ghost"}
-                size="sm"
-                className={`text-sm ${(location.pathname === "/" && !isScrolled && !mobileMenuOpen) ? 'text-white hover:text-white' : ''}`}
+                size="default"
+                className={`text-base ${(location.pathname === "/" && !isScrolled && !mobileMenuOpen) ? 'text-white hover:text-white' : ''}`}
               >
                 Contact
               </Button>
@@ -119,8 +119,8 @@ const Navigation = () => {
             <Link to="/faqs">
               <Button
                 variant={location.pathname === "/faqs" ? "default" : "ghost"}
-                size="sm"
-                className={`text-sm ${(location.pathname === "/" && !isScrolled && !mobileMenuOpen) ? 'text-white hover:text-white' : ''}`}
+                size="default"
+                className={`text-base ${(location.pathname === "/" && !isScrolled && !mobileMenuOpen) ? 'text-white hover:text-white' : ''}`}
               >
                 FAQs
               </Button>
