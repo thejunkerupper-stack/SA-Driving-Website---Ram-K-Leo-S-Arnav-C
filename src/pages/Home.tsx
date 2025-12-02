@@ -90,7 +90,7 @@ const Home = () => {
               block: 'start'
             });
           }}
-          className={`absolute bottom-4 z-10 p-4 text-white hover:text-accent transition-all duration-1500 ease-out delay-900 motion-safe:animate-[bounce_2s_infinite] ${
+          className={`absolute bottom-16 z-10 p-4 text-white hover:text-accent transition-all duration-1500 ease-out delay-900 motion-safe:animate-[bounce_2s_infinite] ${
             isAnimated ? 'opacity-100' : 'opacity-0'
           }`}
           aria-label="Scroll to content"
