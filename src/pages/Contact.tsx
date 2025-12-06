@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Phone, Mail, MapPin, Clock, Instagram, MessageSquare } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Instagram, MessageCircle } from "lucide-react";
 import { useEffect } from "react";
 
 const Contact = () => {
@@ -18,7 +18,7 @@ const Contact = () => {
       icon: Phone,
       title: "Phone",
       content: "(703) 982-1400",
-      description: "Call or Text | Mon-Fri 7:30AM-5:30PM, Sat 9AM-2PM",
+      description: "Call or Text",
     },
     {
       icon: Mail,
@@ -77,9 +77,9 @@ const Contact = () => {
                   >
                     <CardHeader>
                       {index === 0 ? (
-                        <div className="flex justify-center items-center gap-2 mb-2">
+                        <div className="flex justify-center items-center gap-4 mb-2">
                           <Phone className="w-10 h-10 text-primary" />
-                          <MessageSquare className="w-10 h-10 text-primary" />
+                          <MessageCircle className="w-10 h-10 text-primary scale-x-[-1]" />
                         </div>
                       ) : (
                         <info.icon className="w-10 h-10 text-primary mx-auto mb-2" />
