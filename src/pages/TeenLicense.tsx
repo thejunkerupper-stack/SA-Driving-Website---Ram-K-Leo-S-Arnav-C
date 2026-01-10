@@ -94,7 +94,7 @@ const TeenLicense = () => {
             </p>
             <div className="mt-6" />
             <div className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-4 py-2 rounded-lg font-bold shadow-lg">
-              <span>$400</span>
+              <span>$395</span>
             </div>
           </div>
         </div>

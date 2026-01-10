@@ -7,7 +7,7 @@ const AdultWaiver = () => {
   const courses = [
     {
       title: "Adult Waiver Course",
-      price: "$400",
+      price: "$395",
       duration: "7 Days",
       description: "Complete waiver course with road test",
       features: [
