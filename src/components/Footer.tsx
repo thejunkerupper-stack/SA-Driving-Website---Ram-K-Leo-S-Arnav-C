@@ -65,7 +65,7 @@ const Footer = () => {
             <a
               href={`${import.meta.env.BASE_URL}SADriving2026Contract.pdf`}
               className="text-primary hover:underline"
-              download="SADriving2026Contract.pdf"
+              download="newcontract.pdf"
             >
               Student Contract Download
             </a>

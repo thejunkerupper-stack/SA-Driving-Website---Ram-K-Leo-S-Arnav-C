@@ -6,7 +6,7 @@ export const ContractLink = () => {
       <a
         href={`${import.meta.env.BASE_URL}SADriving2026Contract.pdf`}
         className="inline-flex items-center gap-2 text-primary hover:underline"
-        download="SADriving2026Contract.pdf"
+        download="newcontract.pdf"
       >
         <FileText className="w-4 h-4" />
         <span>Download Program Contract</span>

@@ -81,7 +81,7 @@ const Payment = () => {
                   <div className="mt-6">
                     <a
                       href={`${import.meta.env.BASE_URL}SADriving2026Contract.pdf`}
-                      download="SADriving2026Contract.pdf"
+                      download="newcontract.pdf"
                       className="w-full block"
                     >
                       <Button type="button" variant="outline" size="lg" className="w-full">
