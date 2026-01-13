@@ -80,8 +80,8 @@ const Payment = () => {
                   ></iframe>
                   <div className="mt-6">
                     <a
-                      href={`${import.meta.env.BASE_URL}contract.pdf`}
-                      download="SA-Driving-School-Contract.pdf"
+                      href={`${import.meta.env.BASE_URL}SADriving2026Contract.pdf`}
+                      download="SADriving2026Contract.pdf"
                       className="w-full block"
                     >
                       <Button type="button" variant="outline" size="lg" className="w-full">
