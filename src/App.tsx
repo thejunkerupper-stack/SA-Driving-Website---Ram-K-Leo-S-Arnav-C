@@ -9,6 +9,7 @@ import TeenLicense from "./pages/TeenLicense";
 import DriverImprovement from "./pages/DriverImprovement";
 import DrivingLessons from "./pages/DrivingLessons";
 import AdultWaiver from "./pages/AdultWaiver";
+import RADEP from "./pages/RADEP";
 import Payment from "./pages/Payment";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
@@ -38,6 +39,7 @@ const App = () => (
           <Route path="/driver-improvement" element={<DriverImprovement />} />
           <Route path="/driving-lessons" element={<DrivingLessons />} />
           <Route path="/adult-waiver" element={<AdultWaiver />} />
+          <Route path="/radep" element={<RADEP />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/faqs" element={<FAQs />} />
